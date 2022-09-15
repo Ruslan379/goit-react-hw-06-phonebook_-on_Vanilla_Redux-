@@ -1,4 +1,3 @@
-// import { createStore, } from 'redux';
 import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -6,39 +5,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { nanoid } from 'nanoid';
 
 //! +++++++++++++++++++++++ ИНИЦИАЛИЗАЦИЯ ЧАСТЕЙ State ++++++++++++
-// const initialState = {};
-
-// const allState_OLD = {
-//     contacts: {
-//         items: [{
-//             id: nanoid(),
-//             name: "",
-//             number: ""
-//         }],
-//         filter: "",
-//     },
-// };
-
-// const contactsState1 = {
-//     items: [{
-//         id: nanoid(),
-//         name: "",
-//         number: ""
-//     }],
-// };
-
-
-// const contactsState = {
-//     items: [],
-// };
-
-// const filterState = {
-//     filter: "",
-// };
-
-// console.log("allState_OLD:", allState_OLD); //?
-// console.log("contactsState:", contactsState); //?
-// console.log("filterState:", filterState); //?
 
 const allState = {
     items: [],
@@ -59,7 +25,6 @@ const contactsReducer = (state = allState, { type, payload }) => {
             return { ...state, items: localStorageContacts };
 
         case "ADD_Name&Number":
-            // console.log("Лог-IN action в reducer:", type, payload); //!
             const contact = {
                 id: nanoid(),
                 name: payload.name,
@@ -70,11 +35,9 @@ const contactsReducer = (state = allState, { type, payload }) => {
             return { ...state, items: [...state.items, contact] };
 
         case "CHANGES_Filter":
-            // console.log("Лог-IN action в reducer:", type, payload); //!
             return { ...state, filter: payload };
 
         case "DELETES_Todo":
-            // console.log("Лог-IN action в reducer:", type, payload); //!
             const newContact = state.items.filter(contact => contact.id !== payload)
             localStorage.setItem("contacts", JSON.stringify(newContact))
             return { ...state, items: newContact };
@@ -108,7 +71,7 @@ const contactsReducer = (state = allState, { type, payload }) => {
 // });
 
 const rootReducer = combineReducers({
-    contactsReducer,
+    contacts: contactsReducer,
 });
 //! ______________________ rootReducer ______________________
 

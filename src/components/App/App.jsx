@@ -82,11 +82,11 @@ export const App = () => {
   //! Хук useSelector читает данные из state Redux-хранилища 
   //! и подписывается на их обновление
   const StateContacts = () => {
-  return useSelector(state => state.contactsReducer.items);
+  return useSelector(state => state.contacts.items);
   };
 
   const StateFilter = () => {
-  return useSelector(state => state.contactsReducer.filter);
+  return useSelector(state => state.contacts.filter);
   };
 
   const contacts = StateContacts();
